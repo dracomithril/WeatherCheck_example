@@ -1,0 +1,7 @@
+{
+  "name": "endpoint_control",
+  "version": "0.0.1",
+  "dependencies": {
+    "restify": "^4.3.1"
+  }
+}
