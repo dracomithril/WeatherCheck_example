@@ -1,5 +1,7 @@
 {
   "name": "proxy_lb",
-  "version": "0.0.1"
-  
+  "version": "0.0.1",
+  "dependencies": {
+    "restify": "^4.3.1"
+  }
 }
