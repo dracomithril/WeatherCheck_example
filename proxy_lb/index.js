@@ -1,5 +1,5 @@
 /**
- * Created by Gryzli on 29.06.2017.
+ * Created by DracoMithril on 29.06.2017.
  */
 const restyfy = require('restify');
 
