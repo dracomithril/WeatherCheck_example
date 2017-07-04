@@ -6,10 +6,33 @@
     "request-promise-native": "^1.0.4",
     "restify": "^4.3.1"
   },
+  "scripts": {
+    "test": "nyc mocha",
+    "start": "node index.js"
+  },
   "devDependencies": {
     "chai": "^4.0.2",
     "hippie": "^0.5.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "mocha-istanbul": "^0.3.0",
+    "nyc": "^11.0.3",
     "rewire": "^2.5.2",
     "sinon": "^2.3.6"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
   }
 }

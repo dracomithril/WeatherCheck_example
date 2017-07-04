@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "definitions": {},
+  "properties": {
+    "type": {
+      "enum": [
+        "getWeather",
+        "randomNumber"
+      ],
+      "id": "/properties/type",
+      "type": "string"
+    },
+    "url": {
+      "id": "/properties/url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "url",
+    "type"
+  ],
+  "type": "object"
+}
+ 

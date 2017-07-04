@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/dracomithril/WeatherCheck_example/issues"
   },
-  "homepage": "https://github.com/dracomithril/WeatherCheck_example#readme",
-  "devDependencies": {
-    "istanbul": "^0.4.5"
-  }
+  "homepage": "https://github.com/dracomithril/WeatherCheck_example#readme"
 }

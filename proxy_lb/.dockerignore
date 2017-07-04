@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Node template
 # Logs
 logs
 *.log
@@ -38,7 +40,7 @@ jspm_packages/
 
 # Typescript v1 declaration files
 typings/
-html-report/
+
 # Optional npm cache directory
 .npm
 
@@ -56,4 +58,5 @@ html-report/
 
 # dotenv environment variables file
 .env
+
 

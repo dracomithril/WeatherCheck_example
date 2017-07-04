@@ -2,6 +2,40 @@
   "name": "proxy_lb",
   "version": "0.0.1",
   "dependencies": {
-    "restify": "^4.3.1"
+    "ajv": "^5.2.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "hippie": "^0.5.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "mocha-istanbul": "^0.3.0",
+    "nyc": "^11.0.3",
+    "rewire": "^2.5.2",
+    "sinon": "^2.3.6"
+  },
+  "scripts": {
+    "test": "nyc mocha",
+    "start": "node index.js"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
   }
 }
