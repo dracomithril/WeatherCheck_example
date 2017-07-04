@@ -33,6 +33,7 @@ const roles = [{
     name: '/randomNumber', handler: (req, res) => realHandler(epc.randomNumber, req, res)
 }];
 setInterval(function () {
+    //todo clearInterval if no instance founded and set it up if something changed?
     let epc_all = _.union(epc.randomNumber, epc.getWeather);
     console.log(`[START] health-check for ${epc_all.length} instances`);
     let actions = epc_all.map(elem => {
@@ -62,7 +63,6 @@ try {
 
 
 app.put('/api/lb/registerInstance', function (req, res) {
-    //todo json validation
     const instance = req.body;
     if (validate(instance)) {
         const indexOf = epc[instance.type].indexOf(instance.url);
