@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 
 let epc = {
     randomNumber: [],
-    getWeather: []
+    getWeather: [],
+    all: []
 };
 
 const realHandler = (array, req, res) => {
@@ -33,7 +34,6 @@ const roles = [{
     name: '/randomNumber', handler: (req, res) => realHandler(epc.randomNumber, req, res)
 }];
 setInterval(function () {
-    //todo clearInterval if no instance founded and set it up if something changed?
     let epc_all = _.union(epc.randomNumber, epc.getWeather);
     console.log(`[START] health-check for ${epc_all.length} instances`);
     let actions = epc_all.map(elem => {
@@ -44,7 +44,7 @@ setInterval(function () {
         }).then(resp => Promise.resolve(resp.statusMessage)).catch(e => Promise.resolve(elem))
     });
     Promise.all(actions).then(result => {
-        let arr = _.filter(result, (elem) => elem !== "OK");
+        let arr = _.filter(result, elem => elem !== "OK");
         arr.forEach((elem) => {
             _.remove(epc.getWeather, (e => e === elem));
             _.remove(epc.randomNumber, (e => e === elem));
@@ -54,22 +54,48 @@ setInterval(function () {
         console.error(e);
     })
 }, 5000);
+//todo tests
+
 
 try {
-    epc.getWeather = process.env.ENDPOINTS ? JSON.parse(process.env.ENDPOINTS) : [];
+    //todo use Set
+    epc.getWeather = process.env.ENDPOINTS_GW ? JSON.parse(process.env.ENDPOINTS_GW) : [];
+} catch (e) {
+    console.log('wrong params for endpoints list will be empty')
+}
+try {
+    epc.randomNumber = process.env.ENDPOINTS_RN ? JSON.parse(process.env.ENDPOINTS_RN) : [];
 } catch (e) {
     console.log('wrong params for endpoints list will be empty')
 }
 
+function indexEndpoints() {
+    //todo przemysl to?
+    let list = new Set();
 
+    let verifyAndAdd = function (e, s) {
+        if (!list[e]) {
+            list[e] = []
+        }
+        if (!list[e].includes(s)) {
+            list[e].push(s)
+        }
+    };
+    epc.randomNumber.forEach(e => verifyAndAdd(e, 'randomNumber'));
+    epc.getWeather.forEach(e => verifyAndAdd(e, 'getWeather'));
+    epc.all = list
+}
+
+indexEndpoints();
 app.put('/api/lb/registerInstance', function (req, res) {
     const instance = req.body;
     if (validate(instance)) {
         const indexOf = epc[instance.type].indexOf(instance.url);
-        if (indexOf!==-1) {
+        if (indexOf !== -1) {
             return res.status(400).send('we have that endpoint')
         } else {
             epc[instance.type].push(instance.url);
+            indexEndpoints();
             console.log('added instance ' + instance.url);
             res.status(201).send('added instance ' + instance.url)
         }
@@ -78,7 +104,8 @@ app.put('/api/lb/registerInstance', function (req, res) {
     }
 });
 app.get('/api/lb/instances', function (req, res) {
-    return res.send(epc);
+    //todo should return
+    return res.send(epc.all);
 });
 for (let r of roles) {
     if (r.hasOwnProperty('name') && r.hasOwnProperty('handler')) {
