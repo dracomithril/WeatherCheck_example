@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/endpoint_control/.nyc_output" />
       <excludeFolder url="file://$MODULE_DIR$/endpoint_control/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/endpoint_control/html-report" />
+      <excludeFolder url="file://$MODULE_DIR$/proxy_lb/client/build" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
