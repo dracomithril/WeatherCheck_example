@@ -12,7 +12,8 @@ const endpoints = [
 ];
 // const regex = /(https:\/\/www\.metaweather\.com\/api\/location\/\d*\/)/g;
 server.get('/randomNumber', function (req, res, next) {
-    const random = Math.floor(Math.random() * 100);
+    const number = Math.random();
+    const random = Math.floor(number * 100);
     console.log(random);
     res.send(random.toString());
     return next();
