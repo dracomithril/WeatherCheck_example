@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/proxy_lb/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/endpoint_control/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/endpoint_control/.nyc_output" />
       <excludeFolder url="file://$MODULE_DIR$/endpoint_control/coverage" />

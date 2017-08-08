@@ -34,13 +34,6 @@ server.get('/api/health', function (req, res, next) {
 });
 server.get('/getWeather', function (req, res, next) {
     console.log("request to port: " + port);
-    const onLocationWithDate = res => {
-        return Promise.resolve(res);
-    };
-    const onLocation = res => {
-        return Promise.resolve(res.consolidated_weather);
-    };
-
     function mapArray(array) {
         let map = array.map(elem => elem.the_temp || ((elem.min_temp + elem.max_temp) / 2));
         let reduce = map.reduce((prev, curr) => prev + curr);
@@ -53,7 +46,7 @@ server.get('/getWeather', function (req, res, next) {
             let urlObj = url.parse(elem.url);
             let test = urlObj.path.match(/[^\/]+/g);
 
-            const fun = test.length > 3 ? onLocationWithDate : onLocation;
+            const fun = test.length > 3 ? res => Promise.resolve(res) : res =>Promise.resolve(res.consolidated_weather);
             return request.get({
                 uri: elem.url,
                 headers: {
