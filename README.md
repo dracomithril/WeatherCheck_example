@@ -10,3 +10,8 @@ Loadbalancer will start on 8090
 
 
 To stop containers use stop_all.sh
+
+
+
+/api/lb/registerInstance -add new instance
+/api/lb/instances -view all registered instances
