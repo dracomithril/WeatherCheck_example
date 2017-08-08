@@ -21,7 +21,9 @@ let epc = {
 };
 [{env:'ENDPOINTS_GW',name:'getWeather'},{env:'ENDPOINTS_RN',name:'randomNumber'}].forEach(elem=>{
     try {
+        console.log(`ini env for ${elem.env} is: ${process.env[elem.env]}`);
         epc[elem.name] = process.env[elem.env] ? new Set(JSON.parse(process.env[elem.env])) : new Set();
+        console.log(`epc after config is: ${[...epc[elem.name]]}`)
     } catch (e) {
         console.log(`wrong params for ${elem.env} list will be empty`)
     }
