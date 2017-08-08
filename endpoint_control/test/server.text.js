@@ -15,7 +15,7 @@ describe('[index]', function () {
     let requestMock = {
         get: undefined
     };
-    this.timeout(1000);
+    this.timeout(5000);
     before(function () {
         server = rewire('./../server.js');
         let request = server.__get__('request');
@@ -35,7 +35,7 @@ describe('[index]', function () {
                 .get('/getWeather').expectStatus(200)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody({ city: 'London', avg: 20.037499999999998 })
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     sinon.assert.callCount(requestMock.get, 2);
                     done();
@@ -47,7 +47,7 @@ describe('[index]', function () {
                 .get('/getWeather').expectStatus(500)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody({ code: 'InternalError', message: 'test error' })
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     sinon.assert.callCount(requestMock.get, 3);
                     done();
@@ -60,7 +60,7 @@ describe('[index]', function () {
                 .get('/api/health').expectStatus(200)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody('"OK"')
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     done();
                 });
@@ -72,7 +72,7 @@ describe('[index]', function () {
                 .get('/api/instance/endpoints').expectStatus(200)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody('[{"city":"London","url":"https://www.metaweather.com/api/location/44418/"},{"city":"San Francisco","url":"https://www.metaweather.com/api/location/2487956/2013/4/30/"}]')
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     done();
                 });
@@ -82,7 +82,7 @@ describe('[index]', function () {
                 .put('/api/instance/endpoints').expectStatus(500)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody('"not implemented"')
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     done();
                 });
@@ -97,7 +97,7 @@ describe('[index]', function () {
                 .get('/randomNumber').expectStatus(200)
                 .expectHeader('Content-Type', 'application/json')
                 .expectBody('"72"')
-                .end(function (err, res, body) {
+                .end(function (err) {
                     if (err) throw err;
                     done();
                 });

@@ -25,10 +25,10 @@
   },
   "nyc": {
     "check-coverage": true,
-    "lines": 99,
-    "statements": 99,
-    "functions": 99,
-    "branches": 99,
+    "lines": 77,
+    "statements": 70,
+    "functions": 50,
+    "branches": 60,
     "reporter": [
       "lcov",
       "text-summary",
