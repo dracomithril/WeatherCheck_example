@@ -6,6 +6,10 @@
     "request-promise-native": "^1.0.4",
     "restify": "^4.3.1"
   },
+  "engines": {
+    "node": "6.11.0",
+    "npm": "5.3.0"
+  },
   "scripts": {
     "test": "nyc mocha",
     "start": "node index.js"
